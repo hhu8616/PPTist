@@ -18,6 +18,11 @@
           <IconPicture class="handler-item" />
         </Tooltip>
       </FileInput>
+        <FileInput @change="files => insertVideoElement(files)">
+        <Tooltip :mouseLeaveDelay="0" :mouseEnterDelay="0.5" title="插入视频">
+          <IconPicture class="handler-item" />
+        </Tooltip>
+      </FileInput>
       <Popover trigger="click" v-model:visible="shapePoolVisible">
         <template #content>
           <ShapePool @select="shape => drawShape(shape)" />
@@ -100,12 +105,17 @@ export default defineComponent({
     const { scaleCanvas, setCanvasPercentage } = useScaleCanvas()
     const { redo, undo } = useHistorySnapshot()
 
-    const { createImageElement, createChartElement, createTableElement } = useCreateElement()
+    const { createImageElement, createVideoElement, createChartElement, createTableElement } = useCreateElement()
 
     const insertImageElement = (files: File[]) => {
       const imageFile = files[0]
       if (!imageFile) return
       getImageDataURL(imageFile).then(dataURL => createImageElement(dataURL))
+    }
+    const insertVideoElement = (files: File[]) => {
+      const imageFile = files[0]
+      if (!imageFile) return
+      getImageDataURL(imageFile).then(dataURL => createVideoElement(dataURL))
     }
 
     const shapePoolVisible = ref(false)
@@ -148,6 +158,7 @@ export default defineComponent({
       redo,
       undo,
       insertImageElement,
+      insertVideoElement,
       shapePoolVisible,
       linePoolVisible,
       chartPoolVisible,

@@ -68,6 +68,26 @@ export default () => {
       })
     })
   }
+  /**
+   * 创建视频元素
+   * @param src 图片地址
+   */
+  const createVideoElement = (src: string) => {
+    const width = 500
+    const height = 300
+    src = 'http://localhost:8099/27919773-3679-4c80-80c1-2f0dd9c2a682.mp4'
+    createElement({
+      type: 'video',
+      id: createRandomCode(),
+      src,
+      width,
+      height,
+      left: (VIEWPORT_SIZE - width) / 2,
+      top: (VIEWPORT_SIZE * viewportRatio.value - height) / 2,
+      fixedRatio: true,
+      rotate: 0,
+    })
+  }
   
   /**
    * 创建图表元素
@@ -214,6 +234,7 @@ export default () => {
 
   return {
     createImageElement,
+    createVideoElement,
     createChartElement,
     createTableElement,
     createTextElement,

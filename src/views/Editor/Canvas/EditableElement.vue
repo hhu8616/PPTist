@@ -32,6 +32,7 @@ import useSelectAllElement from '@/hooks/useSelectAllElement'
 import { ElementOrderCommands, ElementAlignCommands } from '@/types/edit'
 
 import ImageElement from '@/views/components/element/ImageElement/index.vue'
+import VideoElement from '@/views/components/element/VideoElement/index.vue'
 import TextElement from '@/views/components/element/TextElement/index.vue'
 import ShapeElement from '@/views/components/element/ShapeElement/index.vue'
 import LineElement from '@/views/components/element/LineElement/index.vue'
@@ -62,6 +63,7 @@ export default defineComponent({
     const currentElementComponent = computed(() => {
       const elementTypeMap = {
         [ElementTypes.IMAGE]: ImageElement,
+        [ElementTypes.VIDEO]: VideoElement,
         [ElementTypes.TEXT]: TextElement,
         [ElementTypes.SHAPE]: ShapeElement,
         [ElementTypes.LINE]: LineElement,

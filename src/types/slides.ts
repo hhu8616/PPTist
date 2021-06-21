@@ -10,6 +10,7 @@ export interface PPTElementShadow {
 export const enum ElementTypes {
   TEXT = 'text',
   IMAGE = 'image',
+  VIDEO = 'video',
   SHAPE = 'shape',
   LINE = 'line',
   CHART = 'chart',
@@ -65,6 +66,18 @@ export interface ImageElementClip {
 }
 export interface PPTImageElement extends PPTBaseElement {
   type: 'image';
+  fixedRatio: boolean;
+  src: string;
+  rotate: number;
+  outline?: PPTElementOutline;
+  filters?: ImageElementFilters;
+  clip?: ImageElementClip;
+  flipH?: boolean;
+  flipV?: boolean;
+  shadow?: PPTElementShadow;
+}
+export interface PPTVideoElement extends PPTBaseElement {
+  type: 'video';
   fixedRatio: boolean;
   src: string;
   rotate: number;
@@ -157,7 +170,7 @@ export interface PPTTableElement extends PPTBaseElement {
   data: TableCell[][];
 }
 
-export type PPTElement = PPTTextElement | PPTImageElement | PPTShapeElement | PPTLineElement | PPTChartElement | PPTTableElement
+export type PPTElement = PPTTextElement | PPTImageElement | PPTVideoElement | PPTShapeElement | PPTLineElement | PPTChartElement | PPTTableElement
 
 export interface PPTAnimation {
   elId: string;
